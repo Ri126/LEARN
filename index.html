@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vở học tiếng Anh</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Học Anh">
+<meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12172b" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbfcfd; --grid:#dfe7f2; --ink:#1b2a6b; --muted:#5a6788; --line:#c3cfe3; --red:#d3303a; --bar:#e8eef8;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#12172b; --grid:#1c2543; --ink:#e6ebff; --muted:#8f9bc2; --line:#2b3659; --red:#ff6b73; --bar:#1c2543; color-scheme:dark;}
+}
+:root[data-theme="dark"]{--paper:#12172b; --grid:#1c2543; --ink:#e6ebff; --muted:#8f9bc2; --line:#2b3659; --red:#ff6b73; --bar:#1c2543; color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;color:var(--ink);background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent;
+}
+body::before{content:"";position:fixed;top:0;bottom:0;left:40px;width:2px;background:var(--red);opacity:.55;pointer-events:none}
+main{max-width:640px;margin:0 auto;padding:20px 18px 120px 58px}
+h1{margin:0 0 4px;font-size:2rem;line-height:1.15;font-weight:800;letter-spacing:-.01em;display:inline-block;padding-bottom:6px;border-bottom:4px double var(--red)}
+.sub{margin:10px 0 0;color:var(--muted);font-size:.9rem}
+.streak{margin:14px 0 0;font-weight:600}
+.week{display:flex;gap:8px;margin:14px 0 6px}
+.day{flex:1;text-align:center;font-size:.75rem;color:var(--muted)}
+.day span{display:grid;place-items:center;width:100%;aspect-ratio:1;max-width:38px;margin:4px auto 0;border:1.5px solid var(--line);border-radius:50%;background:var(--paper)}
+.day.today{color:var(--ink);font-weight:600}
+.day.today span{border-color:var(--ink)}
+.day.full span{border-color:var(--red)}
+.day svg{width:20px;height:20px;fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.h2{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 4px;font-size:1.1rem;font-weight:800}
+.h2 small{font-weight:400;color:var(--muted);font-size:.85rem}
+.row{display:flex;gap:14px;align-items:center;width:100%;min-height:56px;padding:10px 0;border:0;border-bottom:1.5px solid var(--line);background:var(--paper);color:inherit;font:inherit;text-align:left;cursor:pointer}
+.row:focus-visible,.tab:focus-visible,summary:focus-visible,.link:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.box{flex:none;display:grid;place-items:center;width:30px;height:30px;border:2px solid var(--ink);border-radius:6px;background:var(--paper)}
+.box svg{width:28px;height:28px;margin:-6px -4px 0 0;fill:none;stroke:var(--red);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:34;stroke-dashoffset:34;transition:stroke-dashoffset .25s ease-out}
+.row[aria-checked="true"] .box svg{stroke-dashoffset:0}
+.row[aria-checked="true"] .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--red)}
+.t{flex:1}
+.m{flex:none;color:var(--muted);font-size:.8rem}
+.bar{height:10px;margin:10px 0 0;border:1.5px solid var(--ink);border-radius:6px;background:var(--bar);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .3s ease-out}
+details{margin-top:18px}
+summary{display:flex;justify-content:space-between;gap:10px;padding:8px 0;font-weight:800;cursor:pointer;list-style:none;border-bottom:2px solid var(--ink)}
+summary::-webkit-details-marker{display:none}
+summary small{font-weight:400;color:var(--muted)}
+.goal{margin:8px 0 0;color:var(--muted);font-size:.85rem}
+.link{margin-top:36px;border:0;background:none;color:var(--muted);font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer;padding:6px 0}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--paper);border-top:2px solid var(--ink);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tab{flex:1;padding:14px 0;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -4px 0 var(--red)}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.box svg,.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Vở học tiếng Anh</h1>
+  <p class="sub" id="date"></p>
+
+  <section id="today">
+    <p class="streak" id="streak"></p>
+    <div class="week" id="week"></div>
+    <div class="h2"><span>Việc hôm nay</span><small id="count"></small></div>
+    <div id="daily" role="group" aria-label="Việc hôm nay"></div>
+  </section>
+
+  <section id="road" hidden>
+    <div class="h2"><span>Cả lộ trình</span><small id="rcount"></small></div>
+    <div class="bar" aria-hidden="true"><i id="rbar"></i></div>
+    <div id="phases"></div>
+    <button class="link" id="reset">Xóa toàn bộ tiến độ</button>
+  </section>
+</main>
+
+<nav role="tablist">
+  <button class="tab" role="tab" id="t-today" aria-selected="true">Hôm nay</button>
+  <button class="tab" role="tab" id="t-road" aria-selected="false">Lộ trình</button>
+</nav>
+
+<script>
+const DAILY=[
+  {id:"anki",t:"Anki: ôn từ cũ, học 10 từ mới",m:"15 phút"},
+  {id:"irr",t:"Học 10 động từ bất quy tắc",m:"15 phút"},
+  {id:"shadow",t:"Nghe và nhại giọng một video",m:"20 phút"},
+  {id:"gram",t:"Ngữ pháp và bài tập",m:"20 phút"},
+  {id:"write",t:"Nói to hoặc viết 5 câu",m:"15 phút"}
+];
+const PHASES=[
+  {n:"Giai đoạn 0: Nền tảng",w:"Tuần 1-2",g:"Phát âm đúng, tự giới thiệu được",i:["Cài Anki và tạo bộ thẻ English","Học bảng phiên âm IPA","Thuộc 100 từ cơ bản","Ghi âm bài tự giới thiệu 1 phút"]},
+  {n:"Giai đoạn 1: A1",w:"Tháng 1-3",g:"Hỏi giá, hỏi đường, gọi món, nói về bản thân 1 phút",i:["Much / many / some / any","Since / for","50 động từ bất quy tắc đầu tiên","Hiện tại đơn và hiện tại tiếp diễn","Quá khứ đơn","Can / can't và there is / there are","Luyện tình huống: hỏi giá, hỏi đường, gọi món","Test lại đạt 7/10 (cuối tháng 1)","Test A1 đạt khoảng 8/10 (cuối tháng 3)"]},
+  {n:"Giai đoạn 2: A2",w:"Tháng 4-6",g:"Kể chuyện hôm qua, nói kế hoạch, viết tin nhắn ngắn",i:["Tương lai: will / going to","So sánh hơn và so sánh nhất","V-ing và to V sau các động từ thường gặp","Must / should / have to","Liên từ: because, but, so, when, if","Kể lại chuyện hôm qua","Viết email ngắn","Test A2 đạt khoảng 8/10"]},
+  {n:"Giai đoạn 3: B1",w:"Tháng 7-9",g:"Nói liên tục 2-3 phút, nêu ý kiến và lý do",i:["Hiện tại hoàn thành","Câu điều kiện loại 1 và 2","Mệnh đề quan hệ","Câu bị động cơ bản","Câu gián tiếp","Nói 2-3 phút về một chủ đề","Test B1 đạt khoảng 8/10"]},
+  {n:"Giai đoạn 4: Củng cố",w:"Tháng 10-12",g:"Giao tiếp ổn trong đời sống và công việc cơ bản",i:["Nói chuyện với người thật 2-3 buổi mỗi tuần","Xem phim hoặc podcast không phụ đề","Luyện tình huống phỏng vấn","Luyện tình huống họp và góp ý kiến","Nói liên tục 3 phút một chủ đề bất kỳ"]}
+];
+const KEY="hoc-anh-v1";
+let S={days:{},road:{}};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=id=>document.getElementById(id);
+const TICK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13 L9 19 L21 4"/></svg>';
+function dk(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function full(k){return (S.days[k]||[]).length>=DAILY.length}
+const open={};
+
+function renderToday(){
+  const now=new Date(),k=dk(now),done=S.days[k]||[];
+  $("date").textContent=now.toLocaleDateString("vi-VN",{weekday:"long",day:"numeric",month:"numeric"});
+  $("count").textContent=done.length+"/"+DAILY.length+" việc";
+  $("daily").innerHTML=DAILY.map(x=>{const on=done.includes(x.id);
+    return `<button class="row" role="checkbox" aria-checked="${on}" data-id="${x.id}"><span class="box">${TICK}</span><span class="t">${x.t}</span><span class="m">${x.m}</span></button>`}).join("");
+  let n=0,d=new Date(now);if(!full(k))d.setDate(d.getDate()-1);
+  while(full(dk(d))){n++;d.setDate(d.getDate()-1)}
+  $("streak").textContent=n?`Đã học đủ ${n} ngày liên tiếp`:"Học đủ 5 việc để bắt đầu một chuỗi ngày mới";
+  const mon=new Date(now);mon.setDate(now.getDate()-((now.getDay()+6)%7));
+  const names=["T2","T3","T4","T5","T6","T7","CN"];
+  $("week").innerHTML=names.map((nm,i)=>{const x=new Date(mon);x.setDate(mon.getDate()+i);const kk=dk(x);
+    const cls=["day",kk===k?"today":"",full(kk)?"full":""].join(" ");
+    return `<div class="${cls}">${nm}<span>${full(kk)?TICK:""}</span></div>`}).join("");
+}
+function renderRoad(){
+  let tot=0,ok=0;
+  $("phases").innerHTML=PHASES.map((p,pi)=>{
+    const c=p.i.filter((_,ii)=>S.road[pi+"-"+ii]).length;tot+=p.i.length;ok+=c;
+    return `<details data-p="${pi}" ${open[pi]?"open":""}><summary><span>${p.n}</span><small>${c}/${p.i.length}</small></summary>
+    <p class="goal">${p.w}. Mục tiêu: ${p.g}</p>
+    ${p.i.map((t,ii)=>{const on=!!S.road[pi+"-"+ii];
+      return `<button class="row" role="checkbox" aria-checked="${on}" data-r="${pi}-${ii}"><span class="box">${TICK}</span><span class="t">${t}</span></button>`}).join("")}</details>`}).join("");
+  $("rcount").textContent=ok+"/"+tot+" mục";
+  $("rbar").style.width=(tot?ok/tot*100:0)+"%";
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".row");if(!b)return;
+  if(b.dataset.id){const k=dk(new Date()),a=S.days[k]||[],i=a.indexOf(b.dataset.id);
+    if(i<0)a.push(b.dataset.id);else a.splice(i,1);S.days[k]=a;save();renderToday()}
+  else if(b.dataset.r){S.road[b.dataset.r]=!S.road[b.dataset.r];save();renderRoad()}
+});
+$("phases").addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.p!==undefined)open[d.dataset.p]=d.open},true);
+function tab(w){
+  const r=w==="road";
+  $("today").hidden=r;$("road").hidden=!r;
+  $("t-today").setAttribute("aria-selected",!r);$("t-road").setAttribute("aria-selected",r);
+  scrollTo(0,0);
+}
+$("t-today").onclick=()=>tab("today");
+$("t-road").onclick=()=>tab("road");
+$("reset").onclick=()=>{if(confirm("Xóa toàn bộ tiến độ đã tick? Không thể khôi phục.")){S={days:{},road:{}};save();renderToday();renderRoad()}};
+renderToday();renderRoad();
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)renderToday()});
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+</body>
+</html>
